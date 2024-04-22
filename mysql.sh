@@ -7,7 +7,8 @@ r="\e[31m"
 g="\e[32m"
 y="\e[33m"
 n="\e[0m"
-
+echo "please enter db password:"
+read -s mysql root password
 validate(){
     if [ $1 -ne 0 ]
     then echo -e "$2...$r failure $n"
@@ -35,10 +36,10 @@ validate $? "starting mql server"
  
 # mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$logfile
 # validate $? "setting up root password "
-mysql -h db.imvicky.online -uroot -pExpenseApp@1 -e 'show databases;'  &>>$logfile
+mysql -h db.imvicky.online -uroot -p${mysql root password} -e 'show databases;'  &>>$logfile
 if [ $? -ne 0 ]
 then 
-   mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$logfile
+   mysql_secure_installation --set-root-pass ${mysql root password} &>>$logfile
    validate $? "mysql root password setup"
    else 
    echo -e "mysql root password is already set...$y skipping $n"

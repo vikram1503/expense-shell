@@ -36,7 +36,7 @@ validate $? "starting mql server"
  
 # mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$logfile
 # validate $? "setting up root password "
-mysql -h db.imvicky.online -uroot -p ${mysql _root_password} -e 'show databases;'  &>>$logfile
+mysql -h db.imvicky.online -uroot -p ${mysql_root_password} -e 'show databases;'  &>>$logfile
 if [ $? -ne 0 ]
 then 
    mysql_secure_installation --set-root-pass ${mysql_root_password} &>>$logfile
